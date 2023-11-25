@@ -134,14 +134,14 @@ class HBNBCommand(cmd.Cmd):
                     value = value[1:-1].replace('\"', '"')
                 if value == "":
                     continue
-                setattr(new_instance, key, type(getattr(new_instance, key, ""))(value))
+                sietattr(new_instance, key, type(getattr
+                    (new_instance, key, ""))(value))
             except ValueError:
                 print("** Invalid parameter **")
                 return
         storage.save()
         print(new_instance.id)
         storage.save()
-
 
     def help_create(self):
         """ Help information for the create method """
@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")

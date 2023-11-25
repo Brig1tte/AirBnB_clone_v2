@@ -19,7 +19,7 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []
-    reviews = [] # represents a relationship with the class Review
+    reviews = []  # represents a relationship with the class Review
 
 
 class BaseStorage:
@@ -50,11 +50,11 @@ class DBStorage(BaseStorage):
         # Implementation for reloading data from a database
 
 
-# Determine the storage type based on the environment variable
-if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
-    storage = DBStorage()
-else:
-    storage = FileStorage()
+    # Determine the storage type based on the environment variable
+    if os.environ.get('HBNB_TYPE_STORAGE') == 'db':
+        storage = DBStorage()
+    else:
+        storage = FileStorage()
 
 # Reload the storage to ensure it is in sync with the underlying storage
 storage.reload()
