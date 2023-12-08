@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-""" A Fabric script to create and distribute an archive to the web servers
-    based on the file 2-do_deploy_web_static.py """
+"""
+A Fabric script to create and distribute an archive to the web servers
+based on the file 2-do_deploy_web_static.py
+"""
 
 from fabric.api import env, local, put, run
 from datetime import datetime
