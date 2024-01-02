@@ -45,26 +45,13 @@ class FileStorage:
         session.close()
 
     @classmethod
-    def reload(cls):
-        """Loads all objects from the JSON file"""
-        try:
-            with open(cls.__file_path, "r") as f:
-                data = json.load(f)
-            for key, value in data.items():
-                clsname, uid = key.split(".")
-                if clsname == "State":
-                    state = State(**value)
-                    city = City(**value["cities"][0])
-                    state.cities.append(city)
-                    cls.__objects[key] = state
-                elif clsname == "City":
-                    cls.__objects[key] = City(**value)
-                elif clsname == "User":
-                    cls.__objects[key] = User(**value)
-                elif clsname == "Place":
-                    cls.__objects[key] = Place(**value)
-                elif clsname == "Review":
-                       cls.__ cls.__objects[objects[key]key] = Review = Place(**(**value)value)
-                elif
-        except FileNotFound clsname ==Error:
-            pass
+    def reload(self):
+        """reloads data from the database"""
+        Base.metadata.create_all(self.__engine)
+        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(sess_factory)
+        self.__session = Session
+
+    def close(self):
+        """call remove() method on the private session attribute"""
+        self.__session.remove()
